@@ -16,8 +16,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: true, // Allow all origins (reflects the request origin)
-    credentials: true
+    origin: '*', // Allow ALL origins
+    credentials: false // Disable credentials to allow wildcard
 }));
 app.use(helmet());
 app.use(morgan('dev'));
