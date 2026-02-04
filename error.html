@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: null }<br> &nbsp; &nbsp;at InsertOneOperation.handleOk (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongodb\src\operations\insert.ts:79:13)<br> &nbsp; &nbsp;at tryOperation (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongodb\src\operations\execute_operation.ts:294:26)<br> &nbsp; &nbsp;at processTicksAndRejections (node:internal/process/task_queues:95:5)<br> &nbsp; &nbsp;at async executeOperation (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongodb\src\operations\execute_operation.ts:123:12)<br> &nbsp; &nbsp;at async Collection.insertOne (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongodb\src\collection.ts:294:12)<br> &nbsp; &nbsp;at async model.$__save (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongoose\lib\model.js:398:16)<br> &nbsp; &nbsp;at async model.save (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongoose\lib\model.js:609:5)<br> &nbsp; &nbsp;at async C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongoose\lib\model.js:2714:9<br> &nbsp; &nbsp;at async Promise.all (index 0)<br> &nbsp; &nbsp;at async Function.create (C:\Users\admin\.gemini\antigravity\scratch\attendance-tracker\backend\node_modules\mongoose\lib\model.js:2699:11)</pre>
+</body>
+</html>
