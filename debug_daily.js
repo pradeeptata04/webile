@@ -1,7 +1,7 @@
 const axios = require('axios');
 const CryptoJS = require('crypto-js');
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://webile-production.up.railway.app/api';
 const KEY = 'default-secret-key-change-this';
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODJlNTkzMWUyNmI3OTMwZDRhYmY3NyIsImlhdCI6MTc3MDIwMTIzMywiZXhwIjoxNzcyNzkzMjMzfQ.zrXn4-HEQtSbAJneg4lt6SvKV7ugiPnA1PF-_1Hfz5Q';
 

@@ -1,7 +1,7 @@
 "use strict";
 const fs = require('fs');
 const loginAndRegister = async () => {
-    const BASE_URL = 'http://localhost:5000/api/auth';
+    const BASE_URL = 'https://webile-production.up.railway.app/api/auth';
     // 1. Login as Admin
     console.log('Logging in as Admin...');
     try {
