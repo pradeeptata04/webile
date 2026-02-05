@@ -17,15 +17,16 @@ const app = express();
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false
 }));
+
+app.options('*', cors()); // Enable pre-flight for all routes explicitly
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(cookieParser()); 
+app.use(cookieParser());
 
 // Global Encryption/Decryption
 app.use(globalDecryption);
@@ -33,7 +34,7 @@ app.use(globalEncryption);
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('API is running...');
+  res.send('API is running...');
 });
 
 app.use('/api/auth', authRoutes);

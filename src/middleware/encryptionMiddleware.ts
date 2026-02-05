@@ -5,6 +5,11 @@ import { decryptPayload, encryptResponse } from '../utils/encryption';
 // but keeping it clean with type assertion where possible.
 
 export const globalDecryption = (req: Request, res: Response, next: NextFunction) => {
+    // Allow OPTIONS requests to pass through (CORS preflight)
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
+
     // Strict Mode: ALL state-changing methods MUST be encrypted
     // GET requests usually have data in query params, which we assume are NOT encrypted for now (unless we encrypt the whole URL?)
     // User said "all routes". usually payload encryption applies to body.
