@@ -27,10 +27,29 @@ import nodemailer from 'nodemailer';
 // @route   POST /api/attendance
 // @access  Private (Manager)
 export const markAttendance = async (req: any, res: Response) => {
-    const { employeeId, status, date, inTime, outTime } = req.body;
+    let { employeeId, status, date, inTime, outTime } = req.body;
     const managerId = req.user._id;
 
     try {
+        // Validation Logic
+        if (status === 'absent') {
+            // Force times to be empty if absent
+            inTime = '';
+            outTime = '';
+        } else if (status === 'present') {
+            // If Present, validate times
+            // NOTE: We allow empty initially to let them mark "Present" first without times, 
+            // BUT the prompt says "if present then only they can able to select... valid time should be taken".
+            // Implementation: We will allow saving 'Present' with empty times (start of day), 
+            // but IF times are provided, they must be valid.
+
+            if (inTime && outTime) {
+                if (inTime >= outTime) {
+                    return res.status(400).json({ message: 'Out time must be greater than In time' });
+                }
+            }
+        }
+
         // Check if employee exists and belongs to manager
         const employee = await User.findOne({ _id: employeeId, managerId: managerId });
         if (!employee) {
@@ -53,13 +72,6 @@ export const markAttendance = async (req: any, res: Response) => {
             existingAttendance.inTime = inTime || '';
             existingAttendance.outTime = outTime || '';
             await existingAttendance.save();
-
-            // If updating to absent, we might want to send email again? 
-            // The prompt implies "when click on absent", so yes.
-            // But we should probably check if it wasn't absent before to avoid spam?
-            // "so when manager click on absent they must get informed by mail" -> implies action trigger.
-            // Let's send it regardless for now as per "click on absent" instruction, assuming simple trigger.
-
             return res.json(existingAttendance);
         }
 
